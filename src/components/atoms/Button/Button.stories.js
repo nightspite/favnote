@@ -7,25 +7,9 @@ export default {
   title: 'Components/Button',
   component: Button,
   decorators: [withKnobs],
-  // argTypes: {
-  //   backgroundColor: { control: 'color' },
-  // },
 };
 
-// const Template = args => (
-//   <Button {...args} color={value}>
-//     {args.label}
-//   </Button>
-// );
-
-export const withAButton = () => (
-  <>
-    <Button>Hello Roman</Button>
-    <Button secondary>Close/save</Button>
-  </>
-);
-
-export const asDynamicVariables = () => {
+export const Primary = () => {
   const label = 'Colors';
   const options = {
     Primary: 'hsl(49, 100%, 58%)',
@@ -37,27 +21,7 @@ export const asDynamicVariables = () => {
 
   const value = select(label, options, defaultValue, groupId);
 
-  return (
-    <>
-      <Button color={value}>Hello Roman</Button>
-      <Button secondary>Close/save</Button>
-    </>
-  );
+  return <Button color={value}>Hello nightspite</Button>;
 };
 
-// export const Secondary = () => (
-//   <Button secondary color={value}>
-//     Hello
-//   </Button>
-// );
-
-// export const Primary = Template.bind({});
-// Primary.args = {
-//   label: 'Close/save',
-// };
-
-// export const Secondary = Template.bind({});
-// Secondary.args = {
-//   secondary: true,
-//   label: 'Remove',
-// };
+export const Secondary = () => <Button secondary>Close/save</Button>;
