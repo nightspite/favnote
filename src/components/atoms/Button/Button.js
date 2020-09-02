@@ -2,11 +2,9 @@ import styled, { css } from 'styled-components';
 
 const Button = styled.button`
   padding: 0;
-  /* background-color: ${({ color }) => color || 'hsl(49, 100%, 58%)'}; */
-  /* background-color: ${props => props.theme.primary}; */
 
-  background-color: ${({ theme }) => theme.primary};
-  /* background-color: ${({ color }) => color}; */
+  background-color: ${({ theme }) => theme.note};
+  /* background-color: ${({ color }) => color};  //for stories knobs */
   width: 220px;
   height: 47px;
   border: none;
