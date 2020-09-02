@@ -17,12 +17,12 @@ const YellowBackground = styled.div`
 `;
 
 export default {
-  title: 'Components/ButtonIcon',
+  title: 'Components/Atoms/ButtonIcon',
   component: ButtonIcon,
   decorators: [story => <YellowBackground>{story()}</YellowBackground>],
 };
 
-export const Bulb = () => <ButtonIcon active icon={bulbIcon}></ButtonIcon>;
+export const Bulb = () => <ButtonIcon icon={bulbIcon}></ButtonIcon>;
 export const Twitter = () => <ButtonIcon icon={twitterIcon}></ButtonIcon>;
 export const Pen = () => <ButtonIcon icon={penIcon}></ButtonIcon>;
 export const Logout = () => <ButtonIcon icon={logoutIcon}></ButtonIcon>;

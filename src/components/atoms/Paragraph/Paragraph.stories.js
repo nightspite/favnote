@@ -2,7 +2,7 @@ import React from 'react';
 import Paragraph from './Paragraph';
 
 export default {
-  title: 'Components/Paragraph',
+  title: 'Components/Atoms/Paragraph',
   component: Paragraph,
 };
 

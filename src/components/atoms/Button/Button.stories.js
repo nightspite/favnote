@@ -4,7 +4,7 @@ import { withKnobs, select } from '@storybook/addon-knobs';
 import Button from './Button';
 
 export default {
-  title: 'Components/Button',
+  title: 'Components/Atoms/Button',
   component: Button,
   decorators: [withKnobs],
 };
