@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 
 const Button = styled.button`
   padding: 0;
-
   background-color: ${({ theme }) => theme.note};
   /* background-color: ${({ color }) => color};  //for stories knobs */
   width: 220px;
