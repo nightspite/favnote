@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 export const theme = {
-  note: 'hsl(49, 100%, 58%)',
-  twitter: 'hsl(196, 83%, 75%)',
-  article: 'hsl(106, 47%, 64%)',
+  notes: 'hsl(49, 100%, 58%)',
+  twitters: 'hsl(196, 83%, 75%)',
+  articles: 'hsl(106, 47%, 64%)',
   grey100: 'hsl(0, 0%, 96%)',
   grey200: 'hsl(0, 0%, 90%)',
   grey300: 'hsl(0, 0%, 70%)',
