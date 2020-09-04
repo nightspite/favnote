@@ -4,8 +4,6 @@
 
 An application built with react to create notes, save interesting Twitter accounts and articles.
 
-<br>
-
 ### Used
 
 - React
@@ -27,7 +25,7 @@ An application built with react to create notes, save interesting Twitter accoun
 
 Just visit this address:
 
-### [nightspite.github.io/favnote/](nightspite.github.io/favnote/)
+#### [nightspite.github.io/favnote/](nightspite.github.io/favnote/)
 
 or
 
@@ -41,4 +39,4 @@ or
 
 It will open an app in the development mode on:
 
-### [http://localhost:3000](http://localhost:3000)
+#### [http://localhost:3000](http://localhost:3000)
