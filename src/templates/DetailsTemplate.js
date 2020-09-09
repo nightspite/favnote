@@ -91,7 +91,7 @@ const DetailsTemplate = ({
           </StyledLink>
         </>
       )}
-      <Button as={Link} to={`/${pageType}`} activeColor={pageType}>
+      <Button as={Link} to={`/${pageType}`} activecolor={pageType}>
         save / close
       </Button>
       <StyledParagraphRemove>Remove</StyledParagraphRemove>
