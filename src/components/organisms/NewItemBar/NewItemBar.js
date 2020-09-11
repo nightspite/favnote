@@ -7,6 +7,7 @@ import Heading from 'components/atoms/Heading/Heading';
 import withContext from 'hoc/withContext';
 import { connect } from 'react-redux';
 import { addItem as addItemAction } from 'actions';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 const StyledWrapper = styled.div`
   border-left: 5px solid ${({ theme, activecolor }) => theme[activecolor]};
@@ -27,7 +28,7 @@ const StyledWrapper = styled.div`
 
 const StyledTextArea = styled(Input)`
   border-radius: 20px;
-  margin: 25px 0 100px;
+  margin: 25px 0 0;
   height: 30vh;
 `;
 
@@ -35,26 +36,104 @@ const StyledInput = styled(Input)`
   margin-top: 25px;
 `;
 
+const StyledForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledButton = styled(Button)`
+  margin-top: 100px;
+`;
+
+const StyledErrorMessage = styled(ErrorMessage)`
+  color: ${({ theme }) => theme.error};
+  font-weight: ${({ theme }) => theme.bold};
+  padding: 10px 0 0 15px;
+`;
+
 const NewItemBar = ({ pageContext, isVisible, addItem }) => (
   <StyledWrapper isVisible={isVisible} activecolor={pageContext}>
     <Heading>Create new {pageContext}</Heading>
-    <StyledInput placeholder="title" />
-    {pageContext === 'articles' && <StyledInput placeholder="link" />}
-    {pageContext === 'twitters' && (
-      <StyledInput placeholder="Account name eg. nightspite3" />
-    )}
-    <StyledTextArea as="textarea" placeholder="description" />
-    <Button
-      onClick={() =>
-        addItem(pageContext, {
-          title: 'Hello',
-          content: 'lorem ipsum',
-        })
-      }
-      activecolor={pageContext}
+    <Formik
+      initialValues={{
+        title: '',
+        content: '',
+        articleUrl: '',
+        twitterName: '',
+        created: '',
+      }}
+      validate={values => {
+        const errors = {};
+
+        if (!values.title) {
+          errors.title = 'Required';
+        }
+
+        if (pageContext === 'twitters') {
+          if (!values.twitterName) {
+            errors.twitterName = 'Required';
+          }
+        }
+
+        if (pageContext === 'articles') {
+          if (!values.articleUrl) {
+            errors.articleUrl = 'Required';
+          }
+        }
+
+        if (!values.content) {
+          errors.content = 'Required';
+        }
+        return errors;
+      }}
+      onSubmit={values => {
+        addItem(pageContext, values);
+      }}
     >
-      Add Note
-    </Button>
+      {() => (
+        <StyledForm>
+          <StyledInput
+            as={Field}
+            type="text"
+            name="title"
+            placeholder="title"
+          />
+          <StyledErrorMessage name="title" component="div" />
+          {pageContext === 'articles' && (
+            <>
+              <StyledInput
+                as={Field}
+                type="text"
+                name="articleUrl"
+                placeholder="link"
+              />
+              <StyledErrorMessage name="articleUrl" component="div" />
+            </>
+          )}
+          {pageContext === 'twitters' && (
+            <>
+              <StyledInput
+                as={Field}
+                type="text"
+                name="twitterName"
+                placeholder="Account name eg. nightspite3"
+              />
+              <StyledErrorMessage name="twitterName" component="div" />
+            </>
+          )}
+          <StyledTextArea
+            as={Field}
+            type="textarea"
+            name="content"
+            placeholder="description"
+          />
+          <StyledErrorMessage name="content" component="div" />
+          <StyledButton type="submit" activecolor={pageContext}>
+            Add Note
+          </StyledButton>
+        </StyledForm>
+      )}
+    </Formik>
   </StyledWrapper>
 );
 
