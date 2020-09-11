@@ -35,6 +35,9 @@ Twitters.defaultProps = {
   twitters: [],
 };
 
-const mapStateToProps = ({ twitters }) => ({ twitters });
+const mapStateToProps = state => {
+  const { twitters } = state;
+  return { twitters };
+};
 
 export default connect(mapStateToProps)(Twitters);
