@@ -9,6 +9,7 @@ import logoutIcon from 'assets/icons/logout.svg';
 import logoIcon from 'assets/icons/logo.svg';
 import PropTypes from 'prop-types';
 import { routes } from 'routes';
+import withContext from 'hoc/withContext';
 
 const SidebarWrapper = styled.nav`
   position: fixed;
@@ -48,8 +49,8 @@ const StyledLinksList = styled.ul`
   padding: 0;
 `;
 
-const Sidebar = ({ pageType }) => (
-  <SidebarWrapper activeColor={pageType}>
+const Sidebar = ({ pageContext }) => (
+  <SidebarWrapper activeColor={pageContext}>
     <StyledLogoLink to="/" />
 
     <StyledLinksList>
@@ -69,11 +70,11 @@ const Sidebar = ({ pageType }) => (
 );
 
 Sidebar.propTypes = {
-  pageType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+  pageContext: PropTypes.oneOf(['notes', 'twitters', 'articles']),
 };
 
 Sidebar.defaultProps = {
-  pageType: 'notes',
+  pageContext: 'notes',
 };
 
-export default Sidebar;
+export default withContext(Sidebar);

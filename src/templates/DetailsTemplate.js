@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Heading from 'components/atoms/Heading/Heading';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Button from 'components/atoms/Button/Button';
+import withContext from 'hoc/withContext';
 
 const StyledWrapper = styled.div`
   max-width: 60vw;
@@ -61,14 +62,14 @@ const StyledImage = styled.img`
 `;
 
 const DetailsTemplate = ({
-  pageType,
+  pageContext,
   title,
   content,
   created,
   twitterName,
   articleUrl,
 }) => (
-  <UserPageTemplate pageType={pageType}>
+  <UserPageTemplate pageType={pageContext}>
     <StyledWrapper>
       <StyledHeader>
         <StyledHeading big as="h1">
@@ -77,10 +78,10 @@ const DetailsTemplate = ({
         <StyledParagraph>created - {created} ago</StyledParagraph>
       </StyledHeader>
       <Paragraph>{content}</Paragraph>
-      {pageType === 'articles' && (
+      {pageContext === 'articles' && (
         <StyledLink href={articleUrl}>Open article</StyledLink>
       )}
-      {pageType === 'twitters' && (
+      {pageContext === 'twitters' && (
         <>
           <StyledImage
             alt={title}
@@ -91,7 +92,7 @@ const DetailsTemplate = ({
           </StyledLink>
         </>
       )}
-      <Button as={Link} to={`/${pageType}`} activecolor={pageType}>
+      <Button as={Link} to={`/${pageContext}`} activecolor={pageContext}>
         save / close
       </Button>
       <StyledParagraphRemove>Remove</StyledParagraphRemove>
@@ -100,7 +101,7 @@ const DetailsTemplate = ({
 );
 
 DetailsTemplate.propTypes = {
-  pageType: PropTypes.string.isRequired,
+  pageContext: PropTypes.oneOf(['notes', 'articles', 'twitters']).isRequired,
   title: PropTypes.string,
   content: PropTypes.string,
   created: PropTypes.string,
@@ -116,4 +117,4 @@ DetailsTemplate.defaultProps = {
   articleUrl: '',
 };
 
-export default DetailsTemplate;
+export default withContext(DetailsTemplate);

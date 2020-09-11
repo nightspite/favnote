@@ -5,11 +5,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const Notes = ({ notes }) => (
-  <GridTemplate pageType="notes">
+  <GridTemplate>
     {notes.map(({ title, content, created, id }) => (
       <Card
         id={id}
-        cardType="notes"
         title={title}
         content={content}
         created={created}
@@ -34,6 +33,9 @@ Notes.defaultProps = {
   notes: [],
 };
 
-const mapStateToProps = ({ notes }) => ({ notes });
+const mapStateToProps = state => {
+  const { notes } = state;
+  return { notes };
+};
 
 export default connect(mapStateToProps)(Notes);
