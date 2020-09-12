@@ -14,9 +14,10 @@ const GlobalStyle = createGlobalStyle`${css`
   }
 
   body {
-    padding-left: 150px;
+    padding: 0;
     font-size: 1.6rem;
     font-family: 'Montserrat', sans-serif;
+    margin: 0;
   }
 `}`;
 

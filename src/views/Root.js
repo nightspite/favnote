@@ -6,6 +6,8 @@ import MainTemplate from 'templates/MainTemplate';
 import Notes from 'views/Notes';
 import Twitters from 'views/Twitters';
 import Articles from 'views/Articles';
+import LoginPage from 'views/LoginPage';
+import RegisterPage from 'views/RegisterPage';
 import DetailsPage from 'views/DetailsPage';
 import { routes } from 'routes';
 
@@ -19,6 +21,8 @@ const Root = () => (
             path={routes.home}
             render={() => <Redirect to="/notes" />}
           />
+          <Route exact path={routes.login} component={LoginPage} />
+          <Route exact path={routes.register} component={RegisterPage} />
           <Route exact path={routes.notes} component={Notes} />
           <Route path={routes.note} component={DetailsPage} />
           <Route exact path={routes.twitters} component={Twitters} />
