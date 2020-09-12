@@ -9,6 +9,9 @@ An application built with react to create notes, save interesting Twitter accoun
 - React
 - React Router
 - Styled Components
+- Context API
+- Redux
+- MongoDB
 
 ###### Dev environment:
 
@@ -18,6 +21,8 @@ An application built with react to create notes, save interesting Twitter accoun
 - Storybook
 - Husky
 - PropTypes
+- Mongoose
+- MongoDB Atlas
 
 <br>
 
