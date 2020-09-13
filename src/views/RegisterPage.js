@@ -62,7 +62,9 @@ const RegisterPage = () => (
               type="password"
               placeholder="Password"
             />
-            <Button type="submit">Register</Button>
+            <Button type="submit" activecolor="notes">
+              Register
+            </Button>
           </StyledForm>
           <StyledLink to={routes.login}>
             Already have an account? Log in!

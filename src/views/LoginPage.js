@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import axios from 'axios';
 import AuthTemplate from 'templates/AuthTemplate';
 import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
@@ -9,6 +8,9 @@ import Button from 'components/atoms/Button/Button';
 import { Link } from 'react-router-dom';
 import { routes } from 'routes';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { authenticate as authenticateAction } from 'actions';
+import PropTypes from 'prop-types';
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -32,18 +34,12 @@ const StyledLink = styled(Link)`
   margin: 20px 0 50px;
 `;
 
-const LoginPage = () => (
+const LoginPage = ({ authenticate }) => (
   <AuthTemplate>
     <Formik
       initialValues={{ username: '', password: '' }}
       onSubmit={({ username, password }) => {
-        axios
-          .post('http://localhost:9000/api/user/login', {
-            username,
-            password,
-          })
-          .then(() => console.log('Login successful'))
-          .catch(err => console.log(err));
+        authenticate(username, password);
       }}
     >
       {() => (
@@ -62,7 +58,9 @@ const LoginPage = () => (
               type="password"
               placeholder="Password"
             />
-            <Button type="submit">sign in</Button>
+            <Button type="submit" activecolor="notes">
+              sign in
+            </Button>
           </StyledForm>
           <StyledLink to={routes.register}>Create account</StyledLink>
         </>
@@ -71,4 +69,13 @@ const LoginPage = () => (
   </AuthTemplate>
 );
 
-export default LoginPage;
+LoginPage.propTypes = {
+  authenticate: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = dispatch => ({
+  authenticate: (username, password) =>
+    dispatch(authenticateAction(username, password)),
+});
+
+export default connect(null, mapDispatchToProps)(LoginPage);
