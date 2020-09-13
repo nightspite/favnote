@@ -23,6 +23,7 @@ An application built with react to create notes, save interesting Twitter accoun
 - PropTypes
 - Mongoose
 - MongoDB Atlas
+- Redux Thunk Middleware
 
 <br>
 
