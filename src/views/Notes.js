@@ -1,32 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react';
 import GridTemplate from 'templates/GridTemplate';
 import Card from 'components/molecules/Card/Card';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { fetchItems } from 'actions';
 
-const Notes = ({ notes }) => (
-  <GridTemplate>
-    {notes.map(({ title, content, created, id }) => (
-      <Card
-        id={id}
-        title={title}
-        content={content}
-        created={created}
-        key={id}
-      />
-    ))}
-  </GridTemplate>
-);
+class Notes extends Component {
+  componentDidMount() {
+    const { fetchNotes } = this.props;
+    fetchNotes();
+  }
+
+  render() {
+    const { notes } = this.props;
+
+    return (
+      <GridTemplate numberOfCards={notes.length}>
+        {notes.map(({ title, content, _id: id }) => (
+          <Card id={id} title={title} content={content} key={id} />
+        ))}
+      </GridTemplate>
+    );
+  }
+}
 
 Notes.propTypes = {
   notes: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
-      created: PropTypes.string.isRequired,
     }),
   ),
+  fetchNotes: PropTypes.func.isRequired,
 };
 
 Notes.defaultProps = {
@@ -38,4 +44,8 @@ const mapStateToProps = state => {
   return { notes };
 };
 
-export default connect(mapStateToProps)(Notes);
+const mapDispatchToProps = dispatch => ({
+  fetchNotes: () => dispatch(fetchItems('notes')),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Notes);
