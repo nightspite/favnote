@@ -29,12 +29,12 @@ const note = {
   },
   getAllNotes: (req, res) => {
     console.log(req);
-    Note.find({ userID: req.body.userID })
+    Note.find({ userID: req.query.userID })
       .then(results => res.send(results))
       .catch(err => console.log(err));
   },
   getAllNotesOfOneType: (req, res) => {
-    Note.find({ userID: req.body.userID, type: req.body.type })
+    Note.find({ userID: req.query.userID, type: req.query.type })
       .then(results => res.send(results))
       .catch(err => console.log(err));
   },

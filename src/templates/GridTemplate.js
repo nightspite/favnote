@@ -58,7 +58,7 @@ class GridTemplate extends Component {
   };
 
   render() {
-    const { children, pageContext } = this.props;
+    const { children, pageContext, numberOfCards } = this.props;
     const { isNewItemBarVisible } = this.state;
 
     return (
@@ -69,7 +69,10 @@ class GridTemplate extends Component {
             <StyledPageHeading big as="h1">
               {pageContext}
             </StyledPageHeading>
-            <StyledPageParagraph>6 {pageContext}</StyledPageParagraph>
+            <StyledPageParagraph>
+              {numberOfCards}{' '}
+              {numberOfCards === 1 ? pageContext.slice(0, -1) : pageContext}
+            </StyledPageParagraph>
           </StyledPageHeader>
           <StyledGrid>{children}</StyledGrid>
           <StyledButtonIcon
@@ -87,10 +90,12 @@ class GridTemplate extends Component {
 GridTemplate.propTypes = {
   children: PropTypes.arrayOf(PropTypes.object).isRequired,
   pageContext: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+  numberOfCards: PropTypes.number,
 };
 
 GridTemplate.defaultProps = {
   pageContext: 'notes',
+  numberOfCards: 0,
 };
 
 export default withContext(GridTemplate);
