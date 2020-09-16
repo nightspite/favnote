@@ -28,6 +28,7 @@ const InnerWrapper = styled.div`
 
   :first-of-type {
     z-index: 1;
+    cursor: pointer;
   }
 
   ${({ flex }) =>
@@ -73,6 +74,10 @@ const StyledLinkButton = styled.a`
   transform: translateY(-50%);
 `;
 
+const StyledButton = styled(Button)`
+  cursor: pointer;
+`;
+
 class Card extends Component {
   state = {
     redirect: false,
@@ -97,8 +102,8 @@ class Card extends Component {
     }
 
     return (
-      <StyledWrapper onClick={this.handleCardClick}>
-        <InnerWrapper activeColor={pageContext}>
+      <StyledWrapper>
+        <InnerWrapper onClick={this.handleCardClick} activeColor={pageContext}>
           <StyledHeading>{title}</StyledHeading>
           {pageContext === 'twitters' && (
             <StyledAvatar src={`http://twivatar.glitch.me/${twitterName}`} />
@@ -107,9 +112,9 @@ class Card extends Component {
         </InnerWrapper>
         <InnerWrapper flex>
           <Paragraph>{content}</Paragraph>
-          <Button onClick={() => removeItem(pageContext, id)} secondary>
+          <StyledButton onClick={() => removeItem(pageContext, id)} secondary>
             Remove
-          </Button>
+          </StyledButton>
         </InnerWrapper>
       </StyledWrapper>
     );

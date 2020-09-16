@@ -1,9 +1,9 @@
+/* eslint-disable no-underscore-dangle */
 import {
   ADD_ITEM,
-  REMOVE_ITEM,
   AUTH_SUCCESS,
-  // FETCH_REQUEST,
   FETCH_SUCCESS,
+  REMOVE_ITEM_SUCCESS,
 } from 'actions';
 
 const initialState = {
@@ -20,7 +20,6 @@ const rootReducer = (state = initialState, action) => {
     case AUTH_SUCCESS:
       return {
         ...state,
-        // eslint-disable-next-line no-underscore-dangle
         userID: action.payload.data._id,
       };
     case ADD_ITEM:
@@ -31,12 +30,12 @@ const rootReducer = (state = initialState, action) => {
           action.payload.item,
         ],
       };
-    case REMOVE_ITEM:
+    case REMOVE_ITEM_SUCCESS:
       return {
         ...state,
         [action.payload.itemType]: [
           ...state[action.payload.itemType].filter(
-            item => item.id !== action.payload.id,
+            item => item._id !== action.payload.id,
           ),
         ],
       };
