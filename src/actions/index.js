@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 
 export const REMOVE_ITEM = 'REMOVE_ITEM';
@@ -11,6 +12,10 @@ export const FETCH_REQUEST = 'FETCH_REQUEST';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_FAILURE = 'FETCH_FAILURE';
 
+export const REMOVE_ITEM_REQUEST = 'REMOVE_ITEM_REQUEST';
+export const REMOVE_ITEM_SUCCESS = 'REMOVE_ITEM_SUCCESS';
+export const REMOVE_ITEM_FAILURE = 'REMOVE_ITEM_FAILURE';
+
 export const authenticate = (username, password) => dispatch => {
   dispatch({ type: AUTH_REQUEST });
 
@@ -20,7 +25,6 @@ export const authenticate = (username, password) => dispatch => {
       password,
     })
     .then(payload => {
-      console.log(payload);
       dispatch({ type: AUTH_SUCCESS, payload });
     })
     .catch(err => {
@@ -40,7 +44,6 @@ export const fetchItems = itemType => (dispatch, getState) => {
       },
     })
     .then(({ data }) => {
-      console.log(data);
       dispatch({
         type: FETCH_SUCCESS,
         payload: {
@@ -55,14 +58,23 @@ export const fetchItems = itemType => (dispatch, getState) => {
     });
 };
 
-export const removeItem = (itemType, id) => {
-  return {
-    type: REMOVE_ITEM,
-    payload: {
-      itemType,
-      id,
-    },
-  };
+export const removeItem = (itemType, id) => dispatch => {
+  dispatch({ type: REMOVE_ITEM_REQUEST });
+  axios
+    .delete(`http://localhost:9000/api/note/${id}`)
+    .then(() => {
+      dispatch({
+        type: REMOVE_ITEM_SUCCESS,
+        payload: {
+          itemType,
+          id,
+        },
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: REMOVE_ITEM_FAILURE });
+    });
 };
 
 export const addItem = (itemType, itemContent) => {

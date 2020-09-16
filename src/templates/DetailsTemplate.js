@@ -27,21 +27,11 @@ const StyledHeading = styled(Heading)`
   text-transform: capitalize;
 `;
 
-const StyledParagraph = styled(Paragraph)`
-  margin: 0;
-  text-transform: uppercase;
-  font-weight: ${({ theme }) => theme.bold};
-`;
-
-const StyledParagraphRemove = styled(Paragraph)`
-  display: block;
-  font-weight: ${({ theme }) => theme.bold};
-  font-size: ${({ theme }) => theme.fontSize.xs};
-  color: black;
-  text-transform: uppercase;
-  margin: 10px 0 50px;
-  text-decoration: underline;
-`;
+// const StyledParagraph = styled(Paragraph)`
+//   margin: 0;
+//   text-transform: uppercase;
+//   font-weight: ${({ theme }) => theme.bold};
+// `;
 
 const StyledLink = styled.a`
   display: block;
@@ -65,7 +55,7 @@ const DetailsTemplate = ({
   pageContext,
   title,
   content,
-  created,
+  // created,
   twitterName,
   articleUrl,
 }) => (
@@ -75,7 +65,7 @@ const DetailsTemplate = ({
         <StyledHeading big as="h1">
           {title}
         </StyledHeading>
-        <StyledParagraph>created - {created} ago</StyledParagraph>
+        {/* <StyledParagraph>created - {created} ago</StyledParagraph> */}
       </StyledHeader>
       <Paragraph>{content}</Paragraph>
       {pageContext === 'articles' && (
@@ -93,9 +83,8 @@ const DetailsTemplate = ({
         </>
       )}
       <Button as={Link} to={`/${pageContext}`} activecolor={pageContext}>
-        save / close
+        save and close
       </Button>
-      <StyledParagraphRemove>Remove</StyledParagraphRemove>
     </StyledWrapper>
   </UserPageTemplate>
 );
@@ -104,7 +93,7 @@ DetailsTemplate.propTypes = {
   pageContext: PropTypes.oneOf(['notes', 'articles', 'twitters']).isRequired,
   title: PropTypes.string,
   content: PropTypes.string,
-  created: PropTypes.string,
+  // created: PropTypes.string,
   twitterName: PropTypes.string,
   articleUrl: PropTypes.string,
 };
@@ -112,7 +101,7 @@ DetailsTemplate.propTypes = {
 DetailsTemplate.defaultProps = {
   title: '',
   content: '',
-  created: '',
+  // created: '',
   twitterName: '',
   articleUrl: '',
 };
