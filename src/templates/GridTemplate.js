@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import UserPageTemplate from 'templates/UserPageTemplate';
 import Input from 'components/atoms/Input/Input';
@@ -44,6 +44,13 @@ const StyledButtonIcon = styled(ButtonIcon)`
   border-radius: 50%;
   background-size: 35%;
   background-color: ${({ activecolor, theme }) => theme[activecolor]};
+  transition: transform 0.3s ease-in-out;
+
+  ${({ close }) =>
+    close &&
+    css`
+      transform: rotate(45deg);
+    `}
 `;
 
 class GridTemplate extends Component {
@@ -79,6 +86,7 @@ class GridTemplate extends Component {
             onClick={this.handleNewItemBarToggle}
             icon={plusIcon}
             activecolor={pageContext}
+            close={isNewItemBarVisible}
           />
           <NewItemBar isVisible={isNewItemBarVisible} />
         </StyledWrapper>
