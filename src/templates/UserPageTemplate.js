@@ -5,6 +5,10 @@ import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
   padding-left: 150px;
+
+  @media (max-width: 640px) {
+    padding-left: 80px;
+  }
 `;
 
 const UserPageTemplate = ({ children }) => (

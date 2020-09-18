@@ -13,6 +13,10 @@ import NewItemBar from 'components/organisms/NewItemBar/NewItemBar';
 const StyledWrapper = styled.div`
   position: relative;
   padding: 25px 150px 25px 70px;
+
+  @media (max-width: 640px) {
+    padding: 25px 30px 25px 30px;
+  }
 `;
 
 const StyledGrid = styled.div`
@@ -20,6 +24,14 @@ const StyledGrid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: [header-start] 100px [header-end] [content-start] auto [content-end];
   grid-gap: 85px;
+
+  @media (max-width: 1300px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StyledPageHeader = styled.div`
@@ -45,6 +57,16 @@ const StyledButtonIcon = styled(ButtonIcon)`
   background-size: 35%;
   background-color: ${({ activecolor, theme }) => theme[activecolor]};
   transition: transform 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+  @media (max-width: 640px) {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    bottom: 15px;
+    right: 15px;
+    background-size: 20%;
+    width: 50px;
+    height: 50px;
+  }
 
   ${({ close }) =>
     close &&
