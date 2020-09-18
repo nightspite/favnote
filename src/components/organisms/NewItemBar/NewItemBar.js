@@ -16,7 +16,7 @@ const StyledWrapper = styled.div`
   top: 0;
   right: 0;
   height: 100vh;
-  width: 680px;
+  width: 640px;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -24,6 +24,11 @@ const StyledWrapper = styled.div`
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
   transform: translate(${({ isVisible }) => (isVisible ? '0' : '100%')});
   transition: transform 0.3s ease-in-out;
+
+  @media (max-width: 640px) {
+    width: 100vw;
+    padding: 50px 40px;
+  }
 `;
 
 const StyledTextArea = styled(Input)`

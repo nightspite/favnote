@@ -14,12 +14,22 @@ const StyledWrapper = styled.div`
   padding: 25px 150px 25px 50px;
 
   @media (max-width: 1200px) {
-    max-width: 80vw;
+    max-width: 40vw;
+  }
+
+  @media (max-width: 640px) {
+    max-width: calc(100vw - 80px);
+    overflow: hidden;
+    padding: 25px 0px 25px 30px;
   }
 `;
 
 const StyledHeader = styled.div`
   margin: 25px 0 50px 0;
+
+  @media (max-width: 640px) {
+    margin-bottom: 25px;
+  }
 `;
 
 const StyledHeading = styled(Heading)`
@@ -49,6 +59,13 @@ const StyledImage = styled.img`
   width: 120px;
   height: 120px;
   border-radius: 50%;
+
+  @media (max-width: 640px) {
+    right: 5px;
+    top: 45px;
+    width: 70px;
+    height: 70px;
+  }
 `;
 
 const DetailsTemplate = ({

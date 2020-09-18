@@ -25,6 +25,12 @@ const SidebarWrapper = styled.nav`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 640px) {
+    /* display: none; */
+    padding: 0;
+    width: 80px;
+  }
 `;
 
 const StyledLogoLink = styled(NavLink)`
