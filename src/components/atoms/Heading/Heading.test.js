@@ -12,6 +12,7 @@ describe('Heading Component', () => {
       </ThemeProvider>,
     );
 
+    getByText('Hello');
     getByText('Hello nightspite');
   });
 });
